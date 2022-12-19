@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Fertilizer": {
+      "commandName": "Project",
+      "commandLineArgs": "\"$(GameExe)\""
+    }
+  }
+}

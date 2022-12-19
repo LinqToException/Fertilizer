@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Kynseed": {
+      "commandName": "Executable",
+      "executablePath": "$(GameDir)/Kynseed.exe",
+      "workingDirectory": "$(GameDir)",
+      "nativeDebugging": true
+    }
+  }
+}

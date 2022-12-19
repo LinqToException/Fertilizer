@@ -1,0 +1,13 @@
+﻿<Project>
+  <ItemGroup>
+    <!-- Reference the .dll/.exes specified with GameAssembly elements-->
+    <Reference Include="@(GameAssembly)">
+      <HintPath Condition="Exists('$(GameDir)\%(Identity).dll')">$(GameDir)\%(Identity).dll</HintPath>
+      <HintPath Condition="Exists('$(GameDir)\%(Identity).exe')">$(GameDir)\%(Identity).exe</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Un-internalize them so they're usable -->
+    <InternalsAssemblyName Include="@(GameAssembly)" />
+  </ItemGroup>
+</Project>
