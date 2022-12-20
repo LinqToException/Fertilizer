@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c Release
+    - name: Publish
+      run: dotnet publish --no-build -c Release -o publish
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: publish
