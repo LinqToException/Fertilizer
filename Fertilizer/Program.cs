@@ -10,18 +10,16 @@ namespace Fertilizer
     {
         private const string InjectorAssemblyName = "Fertilizer.Injector";
 
+        private static bool nonInteractive = false;
+
         public static void Main(string[] args)
         {
-            if (args.Length < 1 || !args[0].EndsWith(".exe") || !File.Exists(args[0]))
-            {
-                // Workaround-Hack for specialized situations
-                args = new[] { Path.Combine(Environment.CurrentDirectory, "Kynseed.exe") };
+            nonInteractive = args.Contains("--non-interactive");
 
-                if (!File.Exists(args[0]))
-                    Fail("Expected the game's executable");
-            }
+            var executable = new FileInfo("Kynseed.exe");
+            if (!executable.Exists)
+                Fail("Could not find Kynseed.exe");
 
-            var executable = new FileInfo(args[0]);
             using var module = ModuleDefinition.ReadModule(executable.FullName, new ReaderParameters
             {
                 InMemory = true
@@ -53,12 +51,25 @@ namespace Fertilizer
 
             module.Write(executable.FullName);
 
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Successfully patched the game!");
+            Pause();
+        }
+
+        private static void Pause()
+        {
+            if (!nonInteractive)
+            {
+                Console.Error.WriteLine("Press any key to exit.");
+                Console.ReadLine();
+            }
         }
 
         private static void Fail(string message)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Error.WriteLine(message);
+            Pause();
             Environment.Exit(1);
         }
     }
