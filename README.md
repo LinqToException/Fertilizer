@@ -34,10 +34,10 @@ This is the more-or-less minimum requirement to get a mod working with Fertilize
 1. Once done, you can zip up the folder of your mod and distribute it.
 
 ## Advanced Setup
-This setup is taking advantage of some options MSBuild offers to simplify the modding process. `Fertilizer.ExampleMod` is the example, minimal setup for a mod plus one Harmony patch.
+This setup is taking advantage of some options MSBuild offers to simplify the modding process. `ExampleMod/AutoPrice` is the example, minimal setup for a mod plus one Harmony patch.
 
 1. Create a new solution.
-1. Copy the `Directory.Build.props`, `Directory.Build.targets` and `Paths.user.example` from this repository to your mod's solution directory. Re-start Visual Studio once done. This only has to be done once.
+1. Copy the `Directory.Build.props`, `Directory.Build.targets` and `Paths.user.example` from this repository in `ExampleMod/` to your mod's solution directory. Re-start Visual Studio once done. This only has to be done once.
 1. Rename the `Paths.user.example` to `Paths.user` and adjust the settings inside for you.
 1. Probably remove or change the `<Version>`-element in the `Directory.Build.props`. This file is more or less providing default values for all .csprojs inside the solution.
 1. Create a new .NET 4.5 or higher library. Fertilizer itself uses .NET 4.6 because 4.6 or higher can be reasonably well be expected to be installed on machines nowadays.
