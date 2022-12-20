@@ -1,5 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
+    <!-- Directory that the game (Kynseed.exe) is in -->
     <GameDir>C:\Program Files\Steam\steamapps\common\Kynseed</GameDir>
   </PropertyGroup>
 </Project>
