@@ -1,4 +1,8 @@
 ﻿<Project>
+  <PropertyGroup>
+    <OutDir>$(GameDir)/mods/$(AssemblyName)/</OutDir>
+  </PropertyGroup>
+  
   <ItemGroup>
     <!-- Reference the .dll/.exes specified with GameAssembly elements-->
     <Reference Include="@(GameAssembly)">
