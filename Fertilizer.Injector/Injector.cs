@@ -58,6 +58,14 @@ namespace Fertilizer
                         }
                     }
                 }
+                catch (FileLoadException ex) when (ex.Message.Contains("0x80131515") && ex.InnerException?.Message.Contains("loadFromRemoteSources") is true)
+                {
+                    var prettyFileName = Uri.TryCreate(ex.FileName ?? string.Empty, UriKind.Absolute, out var uri) ? uri.AbsolutePath : ex.FileName;
+
+                    Error($"Could not load '{prettyFileName}': The file has probably been blocked by Windows.\nRight-click the file, select 'Properties', and then in the 'General' tab at the bottom, there should be an area called 'Security' with an 'Unblock' button. Click that to enable this mod.");
+                    Error($"The exception in detail: {ex}");
+                    continue;
+                }
                 catch (ReflectionTypeLoadException ex)
                 {
                     Error($"Could not load {dir.Name}!");
