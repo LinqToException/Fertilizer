@@ -61,7 +61,7 @@ namespace Fertilizer
             if (!nonInteractive)
             {
                 Console.Error.WriteLine("Press any key to exit.");
-                Console.ReadLine();
+                Console.ReadKey();
             }
         }
 
